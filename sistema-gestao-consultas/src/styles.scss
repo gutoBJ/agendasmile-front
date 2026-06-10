@@ -1,19 +1,65 @@
-
-// Custom Theming for Angular Material
-// For more information: https://material.angular.dev/guide/theming
 @use '@angular/material' as mat;
 
-html {
-  @include mat.theme((
-    color: (
-      theme-type: light,
-      primary: mat.$azure-palette,
-      tertiary: mat.$blue-palette,
-    ),
-    typography: Roboto,
-    density: 0,
-  ));
-}/* You can add global styles to this file, and also import other style files */
+// =============================================
+// TEMA DO ANGULAR MATERIAL
+// =============================================
+$theme: mat.m2-define-light-theme((
+  color: (
+    primary: mat.m2-define-palette(mat.$gray-palette, 900),
+    accent:  mat.m2-define-palette(mat.$gray-palette, 200),
+    warn:    mat.m2-define-palette(mat.$red-palette, 700),
+  ),
+));
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@include mat.all-component-themes($theme);
+
+// =============================================
+// CORES DO SEU FIGMA (variáveis CSS)
+// =============================================
+:root {
+  --cor-primaria:   #030213;   // quase preto (botões, toolbar)
+  --cor-fundo:      #ffffff;   // fundo da página
+  --cor-card:       #ffffff;   // fundo dos cards
+  --cor-input:      #f3f3f5;   // fundo dos campos de formulário
+  --cor-borda:      rgba(0, 0, 0, 0.1);
+  --cor-texto:      #030213;
+  --cor-texto-leve: #717182;   // textos secundários, placeholders
+  --cor-muted:      #ececf0;   // fundos neutros, badges
+  --cor-erro:       #d4183d;   // mensagens de erro
+  --cor-sidebar:    #f7f7f9;   // fundo da sidebar
+  --raio-borda:     0.625rem;  // arredondamento dos cantos
+}
+
+// =============================================
+// ESTILOS GLOBAIS
+// =============================================
+html {
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', Roboto, sans-serif;
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+}
+
+// Arredondamento nos componentes do Material
+.mat-mdc-card {
+  border-radius: var(--raio-borda) !important;
+}
+
+// Fundo dos campos de formulário
+.mdc-text-field--filled {
+  background-color: var(--cor-input) !important;
+}
+
+// Textos secundários
+.texto-leve {
+  color: var(--cor-texto-leve);
+}
+
+// Texto de erro
+.texto-erro {
+  color: var(--cor-erro);
+}
