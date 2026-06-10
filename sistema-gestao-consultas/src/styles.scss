@@ -1,33 +1,37 @@
 @use '@angular/material' as mat;
 
+@include mat.core();
+
 // =============================================
 // TEMA DO ANGULAR MATERIAL
 // =============================================
-$theme: mat.m2-define-light-theme((
+$theme: mat.define-theme((
   color: (
-    primary: mat.m2-define-palette(mat.$gray-palette, 900),
-    accent:  mat.m2-define-palette(mat.$gray-palette, 200),
-    warn:    mat.m2-define-palette(mat.$red-palette, 700),
+    theme-type: light,
+    primary: mat.$azure-palette,
+    tertiary: mat.$blue-palette,
   ),
 ));
 
-@include mat.all-component-themes($theme);
+html {
+  @include mat.all-component-themes($theme);
+}
 
 // =============================================
 // CORES DO SEU FIGMA (variáveis CSS)
 // =============================================
 :root {
-  --cor-primaria:   #030213;   // quase preto (botões, toolbar)
-  --cor-fundo:      #ffffff;   // fundo da página
-  --cor-card:       #ffffff;   // fundo dos cards
-  --cor-input:      #f3f3f5;   // fundo dos campos de formulário
+  --cor-primaria:   #030213;
+  --cor-fundo:      #ffffff;
+  --cor-card:       #ffffff;
+  --cor-input:      #f3f3f5;
   --cor-borda:      rgba(0, 0, 0, 0.1);
   --cor-texto:      #030213;
-  --cor-texto-leve: #717182;   // textos secundários, placeholders
-  --cor-muted:      #ececf0;   // fundos neutros, badges
-  --cor-erro:       #d4183d;   // mensagens de erro
-  --cor-sidebar:    #f7f7f9;   // fundo da sidebar
-  --raio-borda:     0.625rem;  // arredondamento dos cantos
+  --cor-texto-leve: #717182;
+  --cor-muted:      #ececf0;
+  --cor-erro:       #d4183d;
+  --cor-sidebar:    #f7f7f9;
+  --raio-borda:     0.625rem;
 }
 
 // =============================================
@@ -44,22 +48,13 @@ body {
   color: var(--cor-texto);
 }
 
-// Arredondamento nos componentes do Material
 .mat-mdc-card {
   border-radius: var(--raio-borda) !important;
 }
 
-// Fundo dos campos de formulário
 .mdc-text-field--filled {
   background-color: var(--cor-input) !important;
 }
 
-// Textos secundários
-.texto-leve {
-  color: var(--cor-texto-leve);
-}
-
-// Texto de erro
-.texto-erro {
-  color: var(--cor-erro);
-}
+.texto-leve { color: var(--cor-texto-leve); }
+.texto-erro { color: var(--cor-erro); }

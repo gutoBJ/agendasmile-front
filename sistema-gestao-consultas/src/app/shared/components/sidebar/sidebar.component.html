@@ -1,0 +1,43 @@
+<aside class="sidebar">
+  <div class="logo">
+    <span>Sistema Odonto</span>
+  </div>
+
+  <nav>
+    <a routerLink="/dashboard" routerLinkActive="ativo">
+      <mat-icon>dashboard</mat-icon>
+      <span>Dashboard</span>
+    </a>
+
+    <a routerLink="/consultas" routerLinkActive="ativo">
+      <mat-icon>event</mat-icon>
+      <span>Consultas</span>
+    </a>
+
+    <a routerLink="/pacientes" routerLinkActive="ativo">
+      <mat-icon>people</mat-icon>
+      <span>Pacientes</span>
+    </a>
+
+    <a routerLink="/dentistas" routerLinkActive="ativo">
+      <mat-icon>medical_services</mat-icon>
+      <span>Dentistas</span>
+    </a>
+
+    <a routerLink="/especialidades" routerLinkActive="ativo">
+      <mat-icon>star</mat-icon>
+      <span>Especialidades</span>
+    </a>
+
+    <a routerLink="/relatorios" routerLinkActive="ativo">
+      <mat-icon>bar_chart</mat-icon>
+      <span>Relatórios</span>
+    </a>
+
+    <!-- Só aparece para ADMIN -->
+    <a *ngIf="auth.isAdmin()" routerLink="/usuarios" routerLinkActive="ativo">
+      <mat-icon>manage_accounts</mat-icon>
+      <span>Usuários</span>
+    </a>
+  </nav>
+</aside>

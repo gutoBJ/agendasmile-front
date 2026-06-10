@@ -1,0 +1,17 @@
+.header {
+  background-color: var(--cor-card);
+  color: var(--cor-texto);
+  border-bottom: 1px solid var(--cor-borda);
+  box-shadow: none;
+
+  .nome-usuario {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+  }
+
+  .spacer {
+    flex: 1;
+  }
+}

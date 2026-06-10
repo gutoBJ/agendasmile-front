@@ -1,0 +1,13 @@
+<mat-toolbar class="header">
+  <span class="nome-usuario">
+    <mat-icon>account_circle</mat-icon>
+    {{ auth.getNome() }}
+  </span>
+
+  <span class="spacer"></span>
+
+  <button mat-button (click)="auth.logout()">
+    <mat-icon>logout</mat-icon>
+    Sair
+  </button>
+</mat-toolbar>
