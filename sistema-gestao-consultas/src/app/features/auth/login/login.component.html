@@ -1,0 +1,49 @@
+<div class="login-container">
+  <div class="login-card">
+
+    <div class="login-header">
+      <h1>Bem-vindo</h1>
+      <h2>Login</h2>
+      <p class="texto-leve">Faça login para continuar</p>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="entrar()">
+
+      <mat-form-field appearance="fill" class="campo-completo">
+        <mat-label>E-mail</mat-label>
+        <input matInput formControlName="email" type="email" placeholder="seu@email.com" />
+        <mat-icon matSuffix>email</mat-icon>
+        <mat-error *ngIf="form.get('email')?.hasError('required')">
+          E-mail é obrigatório
+        </mat-error>
+        <mat-error *ngIf="form.get('email')?.hasError('email')">
+          E-mail inválido
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="campo-completo">
+        <mat-label>Senha</mat-label>
+        <input matInput formControlName="senha" [type]="senhaVisivel ? 'text' : 'password'" />
+        <button mat-icon-button matSuffix type="button" (click)="senhaVisivel = !senhaVisivel">
+          <mat-icon>{{ senhaVisivel ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+        <mat-error *ngIf="form.get('senha')?.hasError('required')">
+          Senha é obrigatória
+        </mat-error>
+      </mat-form-field>
+
+      <p class="erro" *ngIf="erro">{{ erro }}</p>
+
+      <button
+        mat-flat-button
+        color="primary"
+        type="submit"
+        class="botao-entrar"
+        [disabled]="carregando">
+        <mat-spinner *ngIf="carregando" diameter="20" />
+        <span *ngIf="!carregando">Entrar</span>
+      </button>
+
+    </form>
+  </div>
+</div>
