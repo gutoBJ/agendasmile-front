@@ -7,6 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { PacienteService, Paciente } from '../../core/services/paciente.service';
 import { PacienteFormComponent } from './paciente-form/paciente-form.component';
+import { ConfirmDialogComponent, ConfirmDialogData } from '../../shared/components/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-pacientes',
@@ -70,6 +71,20 @@ export class PacientesComponent implements OnInit {
   }
 
   deletar(id: number) {
-    // Vamos implementar depois com o confirm-dialog
+    const ref = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        titulo: 'Excluir Paciente',
+        mensagem: 'Tem certeza que deseja excluir este paciente?'
+      } as ConfirmDialogData
+    });
+
+    ref.afterClosed().subscribe(confirmou => {
+      if (confirmou) {
+        this.pacienteService.deletar(id).subscribe({
+          next: () => this.carregarPacientes(),
+          error: () => this.erro = 'Erro ao excluir paciente.'
+        });
+      }
+    });
   }
 }
