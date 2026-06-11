@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './core/guards/auth.guard';
+import { LayoutComponent } from './shared/components/layout/layout.component';
 
 export const routes: Routes = [
   {
@@ -8,15 +10,24 @@ export const routes: Routes = [
         .then(m => m.LoginComponent)
   },
   {
-    path: 'dashboard',
-    loadComponent: () =>
-      import('./features/dashboard/dashboard.component')
-        .then(m => m.DashboardComponent)
+    path: '',
+    component: LayoutComponent,      
+    //canActivate: [authGuard],
+    children: [                      
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      {
+        path: 'dashboard',
+        loadComponent: () =>
+          import('./features/dashboard/dashboard.component')
+            .then(m => m.DashboardComponent)
+      },
+      {
+        path: 'pacientes',
+        loadComponent: () =>
+          import('./features/pacientes/pacientes.component')
+            .then(m => m.PacientesComponent)
+      },
+    ]
   },
-  {
-    path: 'pacientes',
-    loadComponent: () =>
-      import('./features/pacientes/pacientes.component')
-        .then(m => m.PacientesComponent)
-  },
+  { path: '**', redirectTo: 'login' }
 ];
