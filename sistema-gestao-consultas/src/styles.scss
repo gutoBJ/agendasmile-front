@@ -18,19 +18,49 @@ html {
 }
 
 // =============================================
-// CORES DO SEU FIGMA (variáveis CSS)
+// CORES DO SEU PROJETO (Novas Cores)
 // =============================================
 :root {
-  --cor-primaria:   #030213;
-  --cor-fundo:      #ffffff;
-  --cor-card:       #ffffff;
-  --cor-input:      #f3f3f5;
-  --cor-borda:      rgba(0, 0, 0, 0.1);
-  --cor-texto:      #030213;
-  --cor-texto-leve: #717182;
-  --cor-muted:      #ececf0;
-  --cor-erro:       #d4183d;
-  --cor-sidebar:    #f7f7f9;
+  // Paleta Principal Atualizada
+  --primary: #0891B2;                 /* Ciano Escuro / Principal */
+  --primary-foreground: #ffffff;
+  --secondary: #22D3EE;               /* Ciano Claro / Secundário */
+  --secondary-foreground: #0F172A;
+  --background: #F8FAFC;              /* Off-white / Fundo da Página */
+  --foreground: #0F172A;              /* Slate Escuro / Texto Padrão */
+  --accent: #066278;                  /* Tom mais escuro de ciano / Destaque e Hover */
+  --accent-foreground: #ffffff;
+  
+  // Cores de Apoio Adaptadas para a Nova Paleta
+  --card: #ffffff;
+  --card-foreground: #0F172A;
+  --muted: #E2E8F0;                   /* Cinza suave para bordas/elementos neutros */
+  --muted-foreground: #64748B;        /* Texto secundário/leve */
+  --destructive: #EF4444;             /* Vermelho padrão para erros */
+  --destructive-foreground: #ffffff;
+  --border: #E2E8F0;                  /* Alinhado com a paleta Slate do fundo */
+  --input-background: #ffffff;
+  
+  // Cores específicas da Sidebar (Herda a suavidade do fundo)
+  --sidebar: #ffffff;
+  --sidebar-primary: #0891B2;
+  --sidebar-border: #E2E8F0;
+
+  // =============================================
+  // MAPEAMENTO DE COMPATIBILIDADE (Para os componentes)
+  // =============================================
+  --cor-primaria:   var(--primary);
+  --cor-fundo:      var(--background);
+  --cor-card:       var(--card);
+  --cor-input:      var(--input-background);
+  --cor-borda:      var(--border);
+  --cor-texto:      var(--foreground);
+  --cor-texto-leve: var(--muted-foreground);
+  --cor-muted:      var(--muted);
+  --cor-erro:       var(--destructive);
+  --cor-sidebar:    var(--sidebar);
+  
+  // Raio padrão de bordas
   --raio-borda:     0.625rem;
 }
 
@@ -50,11 +80,17 @@ body {
 
 .mat-mdc-card {
   border-radius: var(--raio-borda) !important;
+  background-color: var(--cor-card) !important;
+  color: var(--card-foreground) !important;
+  border: 1px solid var(--cor-borda); /* Adicionado para dar leve destaque no fundo #F8FAFC */
 }
 
 .mdc-text-field--filled {
   background-color: var(--cor-input) !important;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-borda) var(--raio-borda) 0 0 !important;
 }
 
+// Utilitários de texto
 .texto-leve { color: var(--cor-texto-leve); }
 .texto-erro { color: var(--cor-erro); }
