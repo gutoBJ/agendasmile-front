@@ -1,0 +1,59 @@
+<div class="pacientes">
+  <div class="topo">
+    <h2>Pacientes</h2>
+    <button mat-flat-button class="botao-novo">
+      <mat-icon>add</mat-icon>
+      Novo Paciente
+    </button>
+  </div>
+
+  <p class="texto-erro" *ngIf="erro">{{ erro }}</p>
+  <p class="texto-leve" *ngIf="carregando">Carregando...</p>
+
+  <mat-card *ngIf="!carregando">
+    <mat-card-content>
+      <table mat-table [dataSource]="pacientes" class="tabela">
+
+        <ng-container matColumnDef="nome">
+          <th mat-header-cell *matHeaderCellDef>Nome</th>
+          <td mat-cell *matCellDef="let p">{{ p.nome }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef>E-mail</th>
+          <td mat-cell *matCellDef="let p">{{ p.email }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="cpf">
+          <th mat-header-cell *matHeaderCellDef>CPF</th>
+          <td mat-cell *matCellDef="let p">{{ p.cpf }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="telefone">
+          <th mat-header-cell *matHeaderCellDef>Telefone</th>
+          <td mat-cell *matCellDef="let p">{{ p.telefone }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="acoes">
+          <th mat-header-cell *matHeaderCellDef>Ações</th>
+          <td mat-cell *matCellDef="let p">
+            <button mat-icon-button (click)="editar(p)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="deletar(p.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="colunas"></tr>
+        <tr mat-row *matRowDef="let row; columns: colunas;"></tr>
+
+      </table>
+
+      <p class="texto-leve sem-dados" *ngIf="pacientes.length === 0">
+        Nenhum paciente cadastrado.
+      </p>
+    </mat-card-content>
+  </mat-card>
+</div>

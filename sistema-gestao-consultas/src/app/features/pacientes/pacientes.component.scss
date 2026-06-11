@@ -1,0 +1,28 @@
+.pacientes {
+  .topo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+
+    h2 {
+      margin: 0;
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+  }
+
+  .botao-novo {
+    background-color: var(--cor-primaria) !important;
+    color: #ffffff !important;
+  }
+
+  .tabela {
+    width: 100%;
+  }
+
+  .sem-dados {
+    text-align: center;
+    padding: 24px 0;
+  }
+}
