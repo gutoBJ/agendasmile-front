@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { PacienteService, Paciente } from '../../core/services/paciente.service';
+import { PacienteFormComponent } from './paciente-form/paciente-form.component';
 
 @Component({
   selector: 'app-pacientes',
@@ -30,7 +31,7 @@ export class PacientesComponent implements OnInit {
   constructor(
     private pacienteService: PacienteService,
     private dialog: MatDialog
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.carregarPacientes();
@@ -51,7 +52,21 @@ export class PacientesComponent implements OnInit {
   }
 
   editar(paciente: Paciente) {
-    // Vamos implementar depois com o formulário
+    const ref = this.dialog.open(PacienteFormComponent, {
+      data: paciente
+    });
+    ref.afterClosed().subscribe(salvou => {
+      if (salvou) this.carregarPacientes();
+    });
+  }
+
+  novo() {
+    const ref = this.dialog.open(PacienteFormComponent, {
+      data: null
+    });
+    ref.afterClosed().subscribe(salvou => {
+      if (salvou) this.carregarPacientes();
+    });
   }
 
   deletar(id: number) {
