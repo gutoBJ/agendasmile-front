@@ -1,0 +1,63 @@
+<div class="especialidades">
+  <div class="topo">
+    <h2>Especialidades</h2>
+  </div>
+
+  <div class="conteudo">
+    <mat-card class="card-form">
+      <mat-card-content>
+        <h3>Nova Especialidade</h3>
+        <form [formGroup]="form" class="form">
+          <mat-form-field appearance="fill" class="campo-completo">
+            <mat-label>Nome da Especialidade</mat-label>
+            <input matInput formControlName="nome" />
+            <mat-error *ngIf="form.get('nome')?.hasError('required')">
+              Nome é obrigatório
+            </mat-error>
+          </mat-form-field>
+
+          <button
+            mat-flat-button
+            class="botao-salvar"
+            (click)="salvar()"
+            [disabled]="form.invalid">
+            <mat-icon>add</mat-icon>
+            Adicionar
+          </button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="card-lista">
+      <mat-card-content>
+        <p class="texto-erro" *ngIf="erro">{{ erro }}</p>
+        <p class="texto-leve" *ngIf="carregando">Carregando...</p>
+
+        <table mat-table [dataSource]="especialidades" class="tabela" *ngIf="!carregando">
+
+          <ng-container matColumnDef="nome">
+            <th mat-header-cell *matHeaderCellDef>Nome</th>
+            <td mat-cell *matCellDef="let e">{{ e.nome }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="acoes">
+            <th mat-header-cell *matHeaderCellDef>Ações</th>
+            <td mat-cell *matCellDef="let e">
+              <button mat-icon-button color="warn" (click)="deletar(e.id)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="colunas"></tr>
+          <tr mat-row *matRowDef="let row; columns: colunas;"></tr>
+
+        </table>
+
+        <p class="texto-leve sem-dados" *ngIf="!carregando && especialidades.length === 0">
+          Nenhuma especialidade cadastrada.
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

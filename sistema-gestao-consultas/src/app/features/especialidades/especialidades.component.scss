@@ -1,0 +1,50 @@
+.especialidades {
+  .topo {
+    margin-bottom: 24px;
+
+    h2 {
+      margin: 0;
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+  }
+}
+
+.conteudo {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.card-form {
+  h3 {
+    margin: 0 0 16px;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .campo-completo {
+    width: 100%;
+  }
+
+  .botao-salvar {
+    background-color: var(--cor-primaria) !important;
+    color: #ffffff !important;
+  }
+}
+
+.tabela {
+  width: 100%;
+}
+
+.sem-dados {
+  text-align: center;
+  padding: 24px 0;
+}
