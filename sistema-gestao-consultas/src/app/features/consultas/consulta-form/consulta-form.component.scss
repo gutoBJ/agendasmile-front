@@ -1,0 +1,16 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 8px;
+  min-width: 480px;
+}
+
+.campo-completo {
+  width: 100%;
+}
+
+.botao-salvar {
+  background-color: var(--cor-primaria) !important;
+  color: #ffffff !important;
+}

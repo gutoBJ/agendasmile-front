@@ -1,0 +1,43 @@
+.consultas {
+  .topo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+
+    h2 {
+      margin: 0;
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+  }
+
+  .botao-novo {
+    background-color: var(--cor-primaria) !important;
+    color: #ffffff !important;
+  }
+
+  .tabela {
+    width: 100%;
+  }
+
+  .sem-dados {
+    text-align: center;
+    padding: 24px 0;
+  }
+}
+
+.chip-agendada {
+  background-color: #e3f2fd !important;
+  color: #1565c0 !important;
+}
+
+.chip-finalizada {
+  background-color: #e8f5e9 !important;
+  color: #2e7d32 !important;
+}
+
+.chip-cancelada {
+  background-color: #fce4ec !important;
+  color: #c62828 !important;
+}

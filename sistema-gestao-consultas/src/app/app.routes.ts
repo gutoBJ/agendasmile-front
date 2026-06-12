@@ -39,6 +39,12 @@ export const routes: Routes = [
           import('./features/especialidades/especialidades.component')
             .then(m => m.EspecialidadesComponent)
       },
+      {
+        path: 'consultas',
+        loadComponent: () =>
+          import('./features/consultas/consultas.component')
+            .then(m => m.ConsultasComponent)
+      },
     ]
   },
   { path: '**', redirectTo: 'login' }

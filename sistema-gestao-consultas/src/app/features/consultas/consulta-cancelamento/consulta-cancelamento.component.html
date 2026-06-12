@@ -1,0 +1,33 @@
+<h2 mat-dialog-title>Cancelar Consulta</h2>
+
+<mat-dialog-content>
+  <p class="texto-leve aviso">
+    Esta ação não pode ser desfeita. Informe o motivo do cancelamento.
+  </p>
+
+  <form [formGroup]="form" class="form">
+    <mat-form-field appearance="fill" class="campo-completo">
+      <mat-label>Motivo do Cancelamento</mat-label>
+      <textarea matInput formControlName="motivoCancelamento" rows="4"></textarea>
+      <mat-error *ngIf="form.get('motivoCancelamento')?.hasError('required')">
+        Motivo é obrigatório
+      </mat-error>
+      <mat-error *ngIf="form.get('motivoCancelamento')?.hasError('minlength')">
+        Motivo deve ter pelo menos 10 caracteres
+      </mat-error>
+    </mat-form-field>
+
+    <p class="texto-erro" *ngIf="erro">{{ erro }}</p>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="fechar()">Voltar</button>
+  <button
+    mat-flat-button
+    color="warn"
+    (click)="confirmar()"
+    [disabled]="carregando">
+    {{ carregando ? 'Cancelando...' : 'Confirmar Cancelamento' }}
+  </button>
+</mat-dialog-actions>

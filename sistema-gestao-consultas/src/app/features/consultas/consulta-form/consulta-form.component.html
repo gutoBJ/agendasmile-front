@@ -1,0 +1,71 @@
+<h2 mat-dialog-title>{{ editando ? 'Editar Consulta' : 'Nova Consulta' }}</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="form" class="form">
+
+    <mat-form-field appearance="fill" class="campo-completo">
+      <mat-label>Paciente</mat-label>
+      <mat-select formControlName="idPaciente">
+        <mat-option *ngFor="let p of pacientes" [value]="p.id">
+          {{ p.nome }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('idPaciente')?.hasError('required')">
+        Paciente é obrigatório
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="campo-completo">
+      <mat-label>Dentista</mat-label>
+      <mat-select formControlName="idDentista">
+        <mat-option *ngFor="let d of dentistas" [value]="d.id">
+          {{ d.nome }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('idDentista')?.hasError('required')">
+        Dentista é obrigatório
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="campo-completo">
+      <mat-label>Descrição</mat-label>
+      <textarea matInput formControlName="descricao" rows="3"></textarea>
+      <mat-error *ngIf="form.get('descricao')?.hasError('required')">
+        Descrição é obrigatória
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="campo-completo">
+      <mat-label>Data e Hora de Início</mat-label>
+      <input matInput type="datetime-local" formControlName="dataInicio" />
+      <mat-error *ngIf="form.get('dataInicio')?.hasError('required')">
+        Data de início é obrigatória
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="campo-completo">
+      <mat-label>Data e Hora de Fim</mat-label>
+      <input matInput type="datetime-local" formControlName="dataFim" />
+      <mat-error *ngIf="form.get('dataFim')?.hasError('required')">
+        Data de fim é obrigatória
+      </mat-error>
+      <mat-error *ngIf="form.get('dataFim')?.hasError('dataInvalida')">
+        Data de fim deve ser após a data de início
+      </mat-error>
+    </mat-form-field>
+
+    <p class="texto-erro" *ngIf="erro">{{ erro }}</p>
+
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cancelar()">Cancelar</button>
+  <button
+    mat-flat-button
+    (click)="salvar()"
+    [disabled]="carregando"
+    class="botao-salvar">
+    {{ carregando ? 'Salvando...' : 'Salvar' }}
+  </button>
+</mat-dialog-actions>
