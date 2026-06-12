@@ -11,9 +11,9 @@ export const routes: Routes = [
   },
   {
     path: '',
-    component: LayoutComponent,      
+    component: LayoutComponent,
     //canActivate: [authGuard],
-    children: [                      
+    children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       {
         path: 'dashboard',
@@ -26,6 +26,12 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./features/pacientes/pacientes.component')
             .then(m => m.PacientesComponent)
+      },
+      {
+        path: 'dentistas',
+        loadComponent: () =>
+          import('./features/dentistas/dentistas.component')
+            .then(m => m.DentistasComponent)
       },
     ]
   },

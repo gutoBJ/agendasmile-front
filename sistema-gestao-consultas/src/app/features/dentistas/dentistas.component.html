@@ -1,0 +1,72 @@
+<div class="dentistas">
+  <div class="topo">
+    <h2>Dentistas</h2>
+    <button mat-flat-button class="botao-novo" (click)="novo()">
+      <mat-icon>add</mat-icon>
+      Novo Dentista
+    </button>
+  </div>
+
+  <p class="texto-erro" *ngIf="erro">{{ erro }}</p>
+  <p class="texto-leve" *ngIf="carregando">Carregando...</p>
+
+  <mat-card *ngIf="!carregando">
+    <mat-card-content>
+      <table mat-table [dataSource]="dentistas" class="tabela">
+
+        <ng-container matColumnDef="nome">
+          <th mat-header-cell *matHeaderCellDef>Nome</th>
+          <td mat-cell *matCellDef="let d">{{ d.nome }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef>E-mail</th>
+          <td mat-cell *matCellDef="let d">{{ d.email }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="cpf">
+          <th mat-header-cell *matHeaderCellDef>CPF</th>
+          <td mat-cell *matCellDef="let d">{{ d.cpf }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="cro">
+          <th mat-header-cell *matHeaderCellDef>CRO</th>
+          <td mat-cell *matCellDef="let d">{{ d.cro }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="ativo">
+          <th mat-header-cell *matHeaderCellDef>Status</th>
+          <td mat-cell *matCellDef="let d">
+            <mat-chip [class]="d.ativo ? 'chip-ativo' : 'chip-inativo'">
+              {{ d.ativo ? 'Ativo' : 'Inativo' }}
+            </mat-chip>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="acoes">
+          <th mat-header-cell *matHeaderCellDef>Ações</th>
+          <td mat-cell *matCellDef="let d">
+            <button mat-icon-button (click)="editar(d)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              color="warn"
+              (click)="desativar(d.id)"
+              [disabled]="!d.ativo">
+              <mat-icon>block</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="colunas"></tr>
+        <tr mat-row *matRowDef="let row; columns: colunas;"></tr>
+
+      </table>
+
+      <p class="texto-leve sem-dados" *ngIf="dentistas.length === 0">
+        Nenhum dentista cadastrado.
+      </p>
+    </mat-card-content>
+  </mat-card>
+</div>
