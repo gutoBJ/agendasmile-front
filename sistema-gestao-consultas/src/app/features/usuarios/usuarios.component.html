@@ -1,0 +1,76 @@
+<div class="usuarios">
+  <div class="topo">
+    <h2>Usuários</h2>
+    <button mat-flat-button class="botao-novo" (click)="novo()">
+      <mat-icon>add</mat-icon>
+      Novo Usuário
+    </button>
+  </div>
+
+  <p class="texto-erro" *ngIf="erro">{{ erro }}</p>
+  <p class="texto-leve" *ngIf="carregando">Carregando...</p>
+
+  <mat-card *ngIf="!carregando">
+    <mat-card-content>
+      <table mat-table [dataSource]="usuarios" class="tabela">
+
+        <ng-container matColumnDef="nome">
+          <th mat-header-cell *matHeaderCellDef>Nome</th>
+          <td mat-cell *matCellDef="let u">{{ u.nome }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef>E-mail</th>
+          <td mat-cell *matCellDef="let u">{{ u.email }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="cpf">
+          <th mat-header-cell *matHeaderCellDef>CPF</th>
+          <td mat-cell *matCellDef="let u">{{ u.cpf }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="perfil">
+          <th mat-header-cell *matHeaderCellDef>Perfil</th>
+          <td mat-cell *matCellDef="let u">
+            <mat-chip [class]="u.perfil === 'ADMIN' ? 'chip-admin' : 'chip-dentista'">
+              {{ u.perfil }}
+            </mat-chip>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="ativo">
+          <th mat-header-cell *matHeaderCellDef>Status</th>
+          <td mat-cell *matCellDef="let u">
+            <mat-chip [class]="u.ativo ? 'chip-ativo' : 'chip-inativo'">
+              {{ u.ativo ? 'Ativo' : 'Inativo' }}
+            </mat-chip>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="acoes">
+          <th mat-header-cell *matHeaderCellDef>Ações</th>
+          <td mat-cell *matCellDef="let u">
+            <button mat-icon-button (click)="editar(u)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              color="warn"
+              (click)="desativar(u.id)"
+              [disabled]="!u.ativo">
+              <mat-icon>block</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="colunas"></tr>
+        <tr mat-row *matRowDef="let row; columns: colunas;"></tr>
+
+      </table>
+
+      <p class="texto-leve sem-dados" *ngIf="usuarios.length === 0">
+        Nenhum usuário cadastrado.
+      </p>
+    </mat-card-content>
+  </mat-card>
+</div>
