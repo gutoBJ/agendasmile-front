@@ -1,0 +1,57 @@
+.relatorios {
+  .topo {
+    margin-bottom: 24px;
+
+    h2 {
+      margin: 0;
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+  }
+}
+
+.card-filtros {
+  margin-bottom: 16px;
+
+  h3 {
+    margin: 0 0 16px;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .form-filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+
+    mat-form-field {
+      min-width: 180px;
+    }
+  }
+
+  .botoes-filtro {
+    display: flex;
+    gap: 8px;
+  }
+
+  .botao-buscar {
+    background-color: var(--cor-primaria) !important;
+    color: #ffffff !important;
+  }
+}
+
+.tabela {
+  width: 100%;
+}
+
+.sem-dados {
+  text-align: center;
+  padding: 24px 0;
+}
+
+.total {
+  margin-top: 16px;
+  text-align: right;
+  color: var(--cor-texto-leve);
+}

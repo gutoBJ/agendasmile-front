@@ -53,6 +53,12 @@ export const routes: Routes = [
           import('./features/usuarios/usuarios.component')
             .then(m => m.UsuariosComponent)
       },
+      {
+        path: 'relatorios',
+        loadComponent: () =>
+          import('./features/relatorios/relatorios.component')
+            .then(m => m.RelatoriosComponent)
+      },
     ]
   },
   { path: '**', redirectTo: 'login' }
