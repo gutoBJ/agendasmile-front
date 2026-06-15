@@ -1,0 +1,84 @@
+.contato {
+  background-color: var(--cor-fundo);
+  min-height: calc(100vh - 64px);
+
+  .conteudo {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 64px 24px;
+  }
+
+  .cabecalho {
+    margin-bottom: 48px;
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 2rem;
+      font-weight: 600;
+    }
+
+    p {
+      margin: 0;
+      font-size: 1.125rem;
+    }
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.informacoes {
+  h2 {
+    margin: 0 0 24px;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  .info-item {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+
+    .info-icone {
+      font-size: 1.5rem;
+    }
+
+    strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    p {
+      margin: 0;
+    }
+  }
+}
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  .campo-completo {
+    width: 100%;
+  }
+
+  .botao-enviar {
+    background-color: var(--cor-primaria) !important;
+    color: #ffffff !important;
+    width: 100%;
+    height: 44px;
+  }
+
+  .sucesso {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    padding: 16px;
+    border-radius: var(--raio-borda);
+    font-weight: 500;
+  }
+}

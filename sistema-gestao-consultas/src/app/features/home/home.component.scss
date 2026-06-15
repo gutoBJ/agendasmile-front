@@ -1,0 +1,84 @@
+.home {
+  background-color: var(--cor-fundo);
+}
+
+// Banner principal
+.banner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 24px;
+  display: flex;
+  align-items: center;
+  gap: 64px;
+
+  .banner-conteudo {
+    flex: 1;
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 600;
+      line-height: 1.3;
+      margin: 0 0 16px;
+      color: var(--cor-texto);
+    }
+
+    p {
+      font-size: 1.125rem;
+      margin: 0 0 32px;
+    }
+  }
+
+  .banner-botoes {
+    display: flex;
+    gap: 12px;
+  }
+
+  .botao-primario {
+    background-color: var(--cor-primaria) !important;
+    color: #ffffff !important;
+  }
+
+  .banner-imagem {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+
+    img {
+      max-width: 100%;
+      max-height: 300px;
+      object-fit: contain;
+    }
+  }
+}
+
+// Seção de recursos
+.recursos {
+  background-color: var(--cor-muted);
+  padding: 64px 24px;
+
+  .recursos-conteudo {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+
+  .recurso {
+    text-align: center;
+
+    .recurso-icone {
+      font-size: 2.5rem;
+    }
+
+    h3 {
+      margin: 16px 0 8px;
+      font-size: 1.125rem;
+      font-weight: 600;
+    }
+
+    p {
+      margin: 0;
+    }
+  }
+}

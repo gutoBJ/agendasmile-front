@@ -1,0 +1,88 @@
+<app-navbar />
+
+<main class="contato">
+  <div class="conteudo">
+
+    <div class="cabecalho">
+      <h1>Contato</h1>
+      <p class="texto-leve">Entre em contato conosco</p>
+    </div>
+
+    <div class="grid">
+
+      <div class="informacoes">
+        <h2>Informações</h2>
+
+        <div class="info-item">
+          <span class="info-icone">📧</span>
+          <div>
+            <strong>E-mail</strong>
+            <p class="texto-leve">contato&#64;agendasmile.com</p>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <span class="info-icone">📞</span>
+          <div>
+            <strong>Telefone</strong>
+            <p class="texto-leve">(11) 99999-9999</p>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <span class="info-icone">📍</span>
+          <div>
+            <strong>Endereço</strong>
+            <p class="texto-leve">São Paulo, SP</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="formulario">
+        <div *ngIf="enviado" class="sucesso">
+          ✅ Mensagem enviada com sucesso! Entraremos em contato em breve.
+        </div>
+
+        <form [formGroup]="form" *ngIf="!enviado">
+
+          <mat-form-field appearance="fill" class="campo-completo">
+            <mat-label>Nome</mat-label>
+            <input matInput formControlName="nome" />
+            <mat-error *ngIf="form.get('nome')?.hasError('required')">
+              Nome é obrigatório
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="campo-completo">
+            <mat-label>E-mail</mat-label>
+            <input matInput formControlName="email" type="email" />
+            <mat-error *ngIf="form.get('email')?.hasError('required')">
+              E-mail é obrigatório
+            </mat-error>
+            <mat-error *ngIf="form.get('email')?.hasError('email')">
+              E-mail inválido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="campo-completo">
+            <mat-label>Mensagem</mat-label>
+            <textarea matInput formControlName="mensagem" rows="5"></textarea>
+            <mat-error *ngIf="form.get('mensagem')?.hasError('required')">
+              Mensagem é obrigatória
+            </mat-error>
+          </mat-form-field>
+
+          <button
+            mat-flat-button
+            class="botao-enviar"
+            (click)="enviar()"
+            [disabled]="form.invalid">
+            Enviar Mensagem
+          </button>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</main>
