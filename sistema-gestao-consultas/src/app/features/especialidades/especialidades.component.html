@@ -30,7 +30,6 @@
 
     <mat-card class="card-lista">
       <mat-card-content>
-        <p class="texto-erro" *ngIf="erro">{{ erro }}</p>
         <p class="texto-leve" *ngIf="carregando">Carregando...</p>
 
         <table mat-table [dataSource]="especialidades" class="tabela" *ngIf="!carregando">
