@@ -3,7 +3,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   background-color: var(--cor-muted);
+}
+
+.login-logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
 }
 
 .login-card {
