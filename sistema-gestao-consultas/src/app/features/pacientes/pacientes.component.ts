@@ -8,6 +8,7 @@ import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { PacienteService, Paciente } from '../../core/services/paciente.service';
 import { PacienteFormComponent } from './paciente-form/paciente-form.component';
 import { ConfirmDialogComponent, ConfirmDialogData } from '../../shared/components/confirm-dialog/confirm-dialog.component';
+import { SnackbarService } from '../../core/services/snackbar.service';
 
 @Component({
   selector: 'app-pacientes',
@@ -31,7 +32,8 @@ export class PacientesComponent implements OnInit {
 
   constructor(
     private pacienteService: PacienteService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private snackbar: SnackbarService
   ) { }
 
   ngOnInit() {
@@ -81,8 +83,13 @@ export class PacientesComponent implements OnInit {
     ref.afterClosed().subscribe(confirmou => {
       if (confirmou) {
         this.pacienteService.deletar(id).subscribe({
-          next: () => this.carregarPacientes(),
-          error: () => this.erro = 'Erro ao excluir paciente.'
+          next: () => {
+            this.snackbar.sucesso('Paciente excluído com sucesso!');
+            this.carregarPacientes();
+          },
+          error: () => {
+            this.snackbar.erro('Erro ao excluir paciente.');
+          }
         });
       }
     });

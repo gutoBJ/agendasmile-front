@@ -15,7 +15,7 @@ export interface Dentista {
 export class DentistaService {
   private apiUrl = 'http://localhost:8080/dentistas';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   listar(): Observable<Dentista[]> {
     return this.http.get<Dentista[]>(this.apiUrl);
@@ -34,6 +34,6 @@ export class DentistaService {
   }
 
   desativar(id: number): Observable<void> {
-    return this.http.patch<void>(`${this.apiUrl}/${id}/desativar`, {});
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }

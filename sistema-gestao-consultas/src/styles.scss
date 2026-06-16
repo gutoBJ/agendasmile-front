@@ -106,3 +106,21 @@ h1, h2, h3, h4, p {
 // Utilitários de texto
 .texto-leve { color: var(--cor-texto-leve); }
 .texto-erro { color: var(--cor-erro); }
+
+.snackbar-sucesso {
+  background-color: #2e7d32 !important;
+  color: #ffffff !important;
+
+  .mat-mdc-button {
+    color: #ffffff !important;
+  }
+}
+
+.snackbar-erro {
+  background-color: var(--cor-erro) !important;
+  color: #ffffff !important;
+
+  .mat-mdc-button {
+    color: #ffffff !important;
+  }
+}

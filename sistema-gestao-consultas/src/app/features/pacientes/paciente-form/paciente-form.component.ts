@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { PacienteService, Paciente } from '../../../core/services/paciente.service';
+import { SnackbarService } from '../../../core/services/snackbar.service';
 
 @Component({
   selector: 'app-paciente-form',
@@ -30,14 +31,15 @@ export class PacienteFormComponent {
     private fb: FormBuilder,
     private pacienteService: PacienteService,
     private dialogRef: MatDialogRef<PacienteFormComponent>,
+    private snackbar: SnackbarService,
     @Inject(MAT_DIALOG_DATA) public data: Paciente | null
   ) {
     this.editando = !!data;
 
     this.form = this.fb.group({
-      nome:     [data?.nome     || '', Validators.required],
-      email:    [data?.email    || '', [Validators.required, Validators.email]],
-      cpf:      [data?.cpf      || '', Validators.required],
+      nome: [data?.nome || '', Validators.required],
+      email: [data?.email || '', [Validators.required, Validators.email]],
+      cpf: [data?.cpf || '', Validators.required],
       telefone: [data?.telefone || '', Validators.required],
     });
   }
@@ -53,8 +55,14 @@ export class PacienteFormComponent {
       : this.pacienteService.criar(paciente);
 
     operacao.subscribe({
-      next: () => this.dialogRef.close(true),
-      error: () => this.carregando = false
+      next: () => {
+        this.snackbar.sucesso(this.editando ? 'Paciente atualizado!' : 'Paciente cadastrado!');
+        this.dialogRef.close(true);
+      },
+      error: () => {
+        this.snackbar.erro('Erro ao salvar paciente.');
+        this.carregando = false;
+      }
     });
   }
 
