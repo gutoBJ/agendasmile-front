@@ -39,7 +39,7 @@ export const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
-    // canActivate: [authGuard],
+    canActivate: [authGuard],
     children: [
       {
         path: 'dashboard',
@@ -79,7 +79,7 @@ export const routes: Routes = [
       {
         path: 'usuarios',
         title: 'AgendaSmile - Usuários',
-        // canActivate: [adminGuard],
+        canActivate: [adminGuard],
         loadComponent: () =>
           import('./features/usuarios/usuarios.component')
             .then(m => m.UsuariosComponent)

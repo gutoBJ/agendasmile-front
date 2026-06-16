@@ -6,6 +6,7 @@ import { jwtDecode } from 'jwt-decode';
 interface TokenPayload {
   sub: string;
   perfil: string;
+  nome: string;
   exp: number;
 }
 
@@ -13,7 +14,7 @@ interface TokenPayload {
 export class AuthService {
   private apiUrl = 'http://localhost:8080';
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) { }
 
   login(email: string, senha: string) {
     return this.http.post<{ token: string }>(`${this.apiUrl}/auth/login`, {
@@ -41,7 +42,7 @@ export class AuthService {
   }
 
   getNome(): string | null {
-    return this.getPayload()?.sub ?? null;
+    return this.getPayload()?.nome ?? null;
   }
 
   isAdmin(): boolean {
