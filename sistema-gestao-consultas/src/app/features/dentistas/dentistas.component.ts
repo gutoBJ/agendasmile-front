@@ -9,6 +9,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { DentistaService, Dentista } from '../../core/services/dentista.service';
 import { ConfirmDialogComponent, ConfirmDialogData } from '../../shared/components/confirm-dialog/confirm-dialog.component';
 import { DentistaFormComponent } from './dentista-form/dentista-form.component';
+import { SnackbarService } from '../../core/services/snackbar.service';
 
 @Component({
   selector: 'app-dentistas',
@@ -33,7 +34,8 @@ export class DentistasComponent implements OnInit {
 
   constructor(
     private dentistaService: DentistaService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private snackbar: SnackbarService
   ) { }
 
   ngOnInit() {
@@ -83,8 +85,11 @@ export class DentistasComponent implements OnInit {
     ref.afterClosed().subscribe(confirmou => {
       if (confirmou) {
         this.dentistaService.desativar(id).subscribe({
-          next: () => this.carregarDentistas(),
-          error: () => this.erro = 'Erro ao desativar dentista.'
+          next: () => {
+            this.snackbar.sucesso('Dentista desativado com sucesso!');
+            this.carregarDentistas();
+          },
+          error: () => this.snackbar.erro('Erro ao desativar dentista.')
         });
       }
     });

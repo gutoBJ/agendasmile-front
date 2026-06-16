@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { DentistaService, Dentista } from '../../../core/services/dentista.service';
+import { SnackbarService } from '../../../core/services/snackbar.service';
 
 @Component({
   selector: 'app-dentista-form',
@@ -30,15 +31,16 @@ export class DentistaFormComponent {
     private fb: FormBuilder,
     private dentistaService: DentistaService,
     private dialogRef: MatDialogRef<DentistaFormComponent>,
+    private snackbar: SnackbarService,
     @Inject(MAT_DIALOG_DATA) public data: Dentista | null
   ) {
     this.editando = !!data;
 
     this.form = this.fb.group({
-      nome:  [data?.nome  || '', Validators.required],
+      nome: [data?.nome || '', Validators.required],
       email: [data?.email || '', [Validators.required, Validators.email]],
-      cpf:   [data?.cpf   || '', Validators.required],
-      cro:   [data?.cro   || '', Validators.required],
+      cpf: [data?.cpf || '', Validators.required],
+      cro: [data?.cro || '', Validators.required],
     });
   }
 
@@ -53,8 +55,14 @@ export class DentistaFormComponent {
       : this.dentistaService.criar(dentista);
 
     operacao.subscribe({
-      next: () => this.dialogRef.close(true),
-      error: () => this.carregando = false
+      next: () => {
+        this.snackbar.sucesso(this.editando ? 'Dentista atualizado!' : 'Dentista cadastrado!');
+        this.dialogRef.close(true);
+      },
+      error: () => {
+        this.snackbar.erro('Erro ao salvar dentista.');
+        this.carregando = false;
+      }
     });
   }
 
