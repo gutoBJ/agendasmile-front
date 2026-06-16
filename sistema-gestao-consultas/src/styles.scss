@@ -73,9 +73,13 @@ html {
 
 body {
   margin: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', sans-serif;  // texto geral
   background-color: var(--cor-fundo);
   color: var(--cor-texto);
+}
+
+h1, h2, h3, h4, p {
+  font-family: 'Inter', sans-serif;
 }
 
 .mat-mdc-card {
