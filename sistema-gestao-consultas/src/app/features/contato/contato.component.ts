@@ -5,6 +5,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
+import { FooterComponent } from "../../shared/components/footer/footer.component";
 
 @Component({
   selector: 'app-contato',
@@ -16,7 +17,8 @@ import { NavbarComponent } from '../../shared/components/navbar/navbar.component
     MatInputModule,
     MatButtonModule,
     NavbarComponent,
-  ],
+    FooterComponent
+],
   templateUrl: './contato.component.html',
   styleUrl: './contato.component.scss'
 })
