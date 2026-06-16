@@ -9,18 +9,14 @@ import { MatChipsModule } from '@angular/material/chips';
 import { UsuarioService, Usuario } from '../../core/services/usuario.service';
 import { ConfirmDialogComponent, ConfirmDialogData } from '../../shared/components/confirm-dialog/confirm-dialog.component';
 import { UsuarioFormComponent } from './usuario-form/usuario-form.component';
+import { SnackbarService } from '../../core/services/snackbar.service';
 
 @Component({
   selector: 'app-usuarios',
   standalone: true,
   imports: [
-    CommonModule,
-    MatTableModule,
-    MatButtonModule,
-    MatIconModule,
-    MatCardModule,
-    MatDialogModule,
-    MatChipsModule,
+    CommonModule, MatTableModule, MatButtonModule, MatIconModule,
+    MatCardModule, MatDialogModule, MatChipsModule,
   ],
   templateUrl: './usuarios.component.html',
   styleUrl: './usuarios.component.scss'
@@ -29,12 +25,12 @@ export class UsuariosComponent implements OnInit {
   usuarios: Usuario[] = [];
   colunas = ['nome', 'email', 'cpf', 'perfil', 'ativo', 'acoes'];
   carregando = false;
-  erro = '';
 
   constructor(
     private usuarioService: UsuarioService,
-    private dialog: MatDialog
-  ) { }
+    private dialog: MatDialog,
+    private snackbar: SnackbarService
+  ) {}
 
   ngOnInit() {
     this.carregarUsuarios();
@@ -48,25 +44,21 @@ export class UsuariosComponent implements OnInit {
         this.carregando = false;
       },
       error: () => {
-        this.erro = 'Erro ao carregar usuários.';
+        this.snackbar.erro('Erro ao carregar usuários.');
         this.carregando = false;
       }
     });
   }
 
   novo() {
-    const ref = this.dialog.open(UsuarioFormComponent, {
-      data: null
-    });
+    const ref = this.dialog.open(UsuarioFormComponent, { data: null });
     ref.afterClosed().subscribe(salvou => {
       if (salvou) this.carregarUsuarios();
     });
   }
 
   editar(usuario: Usuario) {
-    const ref = this.dialog.open(UsuarioFormComponent, {
-      data: usuario
-    });
+    const ref = this.dialog.open(UsuarioFormComponent, { data: usuario });
     ref.afterClosed().subscribe(salvou => {
       if (salvou) this.carregarUsuarios();
     });
@@ -83,8 +75,11 @@ export class UsuariosComponent implements OnInit {
     ref.afterClosed().subscribe(confirmou => {
       if (confirmou) {
         this.usuarioService.desativar(id).subscribe({
-          next: () => this.carregarUsuarios(),
-          error: () => this.erro = 'Erro ao desativar usuário.'
+          next: () => {
+            this.snackbar.sucesso('Usuário desativado com sucesso!');
+            this.carregarUsuarios();
+          },
+          error: () => this.snackbar.erro('Erro ao desativar usuário.')
         });
       }
     });

@@ -9,18 +9,14 @@ import { CommonModule } from '@angular/common';
 import { ConsultaService, Consulta } from '../../../core/services/consulta.service';
 import { PacienteService, Paciente } from '../../../core/services/paciente.service';
 import { DentistaService, Dentista } from '../../../core/services/dentista.service';
+import { SnackbarService } from '../../../core/services/snackbar.service';
 
 @Component({
   selector: 'app-consulta-form',
   standalone: true,
   imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatSelectModule,
+    CommonModule, ReactiveFormsModule, MatDialogModule,
+    MatFormFieldModule, MatInputModule, MatButtonModule, MatSelectModule,
   ],
   templateUrl: './consulta-form.component.html',
   styleUrl: './consulta-form.component.scss'
@@ -31,7 +27,6 @@ export class ConsultaFormComponent implements OnInit {
   editando: boolean;
   pacientes: Paciente[] = [];
   dentistas: Dentista[] = [];
-  erro = '';
 
   constructor(
     private fb: FormBuilder,
@@ -39,16 +34,17 @@ export class ConsultaFormComponent implements OnInit {
     private pacienteService: PacienteService,
     private dentistaService: DentistaService,
     private dialogRef: MatDialogRef<ConsultaFormComponent>,
+    private snackbar: SnackbarService,
     @Inject(MAT_DIALOG_DATA) public data: Consulta | null
   ) {
     this.editando = !!data;
 
     this.form = this.fb.group({
-      idPaciente:  [data?.idPaciente  || '', Validators.required],
-      idDentista:  [data?.idDentista  || '', Validators.required],
-      descricao:   [data?.descricao   || '', Validators.required],
-      dataInicio:  [data?.dataInicio  || '', Validators.required],
-      dataFim:     [data?.dataFim     || '', Validators.required],
+      idPaciente: [data?.idPaciente || '', Validators.required],
+      idDentista: [data?.idDentista || '', Validators.required],
+      descricao:  [data?.descricao  || '', Validators.required],
+      dataInicio: [data?.dataInicio || '', Validators.required],
+      dataFim:    [data?.dataFim    || '', Validators.required],
     }, { validators: this.validarDatas });
   }
 
@@ -57,7 +53,6 @@ export class ConsultaFormComponent implements OnInit {
     this.dentistaService.listar().subscribe(d => this.dentistas = d.filter(d => d.ativo));
   }
 
-  // Valida que dataFim é depois de dataInicio
   validarDatas(form: FormGroup) {
     const inicio = form.get('dataInicio')?.value;
     const fim = form.get('dataFim')?.value;
@@ -72,24 +67,25 @@ export class ConsultaFormComponent implements OnInit {
   salvar() {
     if (this.form.invalid) return;
 
-    // Valida que a data não é no passado
     const dataInicio = new Date(this.form.value.dataInicio);
     if (dataInicio < new Date()) {
-      this.erro = 'Não é permitido agendar consultas em datas passadas.';
+      this.snackbar.erro('Não é permitido agendar consultas em datas passadas.');
       return;
     }
 
     this.carregando = true;
-    const consulta = this.form.value;
 
     const operacao = this.editando
-      ? this.consultaService.atualizar(this.data!.id!, consulta)
-      : this.consultaService.criar(consulta);
+      ? this.consultaService.atualizar(this.data!.id!, this.form.value)
+      : this.consultaService.criar(this.form.value);
 
     operacao.subscribe({
-      next: () => this.dialogRef.close(true),
+      next: () => {
+        this.snackbar.sucesso(this.editando ? 'Consulta atualizada!' : 'Consulta agendada!');
+        this.dialogRef.close(true);
+      },
       error: (err) => {
-        this.erro = err?.error?.mensagem || 'Erro ao salvar consulta.';
+        this.snackbar.erro(err?.error?.mensagem || 'Erro ao salvar consulta.');
         this.carregando = false;
       }
     });

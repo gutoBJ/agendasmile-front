@@ -8,19 +8,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { CommonModule } from '@angular/common';
 import { UsuarioService, Usuario } from '../../../core/services/usuario.service';
+import { SnackbarService } from '../../../core/services/snackbar.service';
 
 @Component({
   selector: 'app-usuario-form',
   standalone: true,
   imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatButtonModule,
-    MatSelectModule,
+    CommonModule, ReactiveFormsModule, MatDialogModule, MatFormFieldModule,
+    MatIconModule, MatInputModule, MatButtonModule, MatSelectModule,
   ],
   templateUrl: './usuario-form.component.html',
   styleUrl: './usuario-form.component.scss'
@@ -30,14 +25,13 @@ export class UsuarioFormComponent {
   carregando = false;
   editando: boolean;
   senhaVisivel = false;
-  erro = '';
-
   perfis = ['ADMIN', 'DENTISTA'];
 
   constructor(
     private fb: FormBuilder,
     private usuarioService: UsuarioService,
     private dialogRef: MatDialogRef<UsuarioFormComponent>,
+    private snackbar: SnackbarService,
     @Inject(MAT_DIALOG_DATA) public data: Usuario | null
   ) {
     this.editando = !!data;
@@ -47,7 +41,6 @@ export class UsuarioFormComponent {
       email:  [data?.email  || '', [Validators.required, Validators.email]],
       cpf:    [data?.cpf    || '', Validators.required],
       perfil: [data?.perfil || '', Validators.required],
-      // Senha só obrigatória no cadastro
       senha:  ['', this.editando ? [] : Validators.required],
     });
   }
@@ -58,7 +51,6 @@ export class UsuarioFormComponent {
     this.carregando = true;
     const usuario = this.form.value;
 
-    // Se estiver editando e senha vazia, remove do payload
     if (this.editando && !usuario.senha) {
       delete usuario.senha;
     }
@@ -68,9 +60,12 @@ export class UsuarioFormComponent {
       : this.usuarioService.criar(usuario);
 
     operacao.subscribe({
-      next: () => this.dialogRef.close(true),
+      next: () => {
+        this.snackbar.sucesso(this.editando ? 'Usuário atualizado!' : 'Usuário cadastrado!');
+        this.dialogRef.close(true);
+      },
       error: (err) => {
-        this.erro = err?.error?.mensagem || 'Erro ao salvar usuário.';
+        this.snackbar.erro(err?.error?.mensagem || 'Erro ao salvar usuário.');
         this.carregando = false;
       }
     });

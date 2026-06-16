@@ -10,19 +10,14 @@ import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EspecialidadeService, Especialidade } from '../../core/services/especialidade.service';
 import { ConfirmDialogComponent, ConfirmDialogData } from '../../shared/components/confirm-dialog/confirm-dialog.component';
+import { SnackbarService } from '../../core/services/snackbar.service';
 
 @Component({
   selector: 'app-especialidades',
   standalone: true,
   imports: [
-    CommonModule,
-    MatTableModule,
-    MatButtonModule,
-    MatIconModule,
-    MatCardModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatInputModule,
+    CommonModule, MatTableModule, MatButtonModule, MatIconModule,
+    MatCardModule, MatDialogModule, MatFormFieldModule, MatInputModule,
     ReactiveFormsModule,
   ],
   templateUrl: './especialidades.component.html',
@@ -32,13 +27,13 @@ export class EspecialidadesComponent implements OnInit {
   especialidades: Especialidade[] = [];
   colunas = ['nome', 'acoes'];
   carregando = false;
-  erro = '';
   form: FormGroup;
 
   constructor(
     private especialidadeService: EspecialidadeService,
     private dialog: MatDialog,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private snackbar: SnackbarService
   ) {
     this.form = this.fb.group({
       nome: ['', Validators.required]
@@ -57,7 +52,7 @@ export class EspecialidadesComponent implements OnInit {
         this.carregando = false;
       },
       error: () => {
-        this.erro = 'Erro ao carregar especialidades.';
+        this.snackbar.erro('Erro ao carregar especialidades.');
         this.carregando = false;
       }
     });
@@ -68,10 +63,11 @@ export class EspecialidadesComponent implements OnInit {
 
     this.especialidadeService.criar(this.form.value).subscribe({
       next: () => {
+        this.snackbar.sucesso('Especialidade cadastrada com sucesso!');
         this.form.reset();
         this.carregarEspecialidades();
       },
-      error: () => this.erro = 'Erro ao salvar especialidade.'
+      error: () => this.snackbar.erro('Erro ao salvar especialidade.')
     });
   }
 
@@ -86,8 +82,11 @@ export class EspecialidadesComponent implements OnInit {
     ref.afterClosed().subscribe(confirmou => {
       if (confirmou) {
         this.especialidadeService.deletar(id).subscribe({
-          next: () => this.carregarEspecialidades(),
-          error: () => this.erro = 'Erro ao excluir especialidade.'
+          next: () => {
+            this.snackbar.sucesso('Especialidade excluída com sucesso!');
+            this.carregarEspecialidades();
+          },
+          error: () => this.snackbar.erro('Erro ao excluir especialidade.')
         });
       }
     });
