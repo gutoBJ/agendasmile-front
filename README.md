@@ -12,7 +12,7 @@ Este projeto corresponde ao frontend da aplicação, responsável pela interface
 
 ### Frontend
 
-* Angular 20
+* Angular 19
 * TypeScript
 * Angular Router
 * Angular Material
@@ -92,6 +92,12 @@ PostgreSQL
 
 ## Layout e Design
 
+### Conceito Visual
+
+O AgendaSmile utiliza uma identidade visual baseada em tons de ciano e azul-esverdeado, transmitindo confiança, tecnologia, organização e bem-estar — características alinhadas ao contexto de clínicas odontológicas e sistemas de gestão na área da saúde.
+
+A combinação entre o fundo claro (`#F8FAFC`) e os tons de ciano proporciona uma interface moderna, limpa e agradável, favorecendo a legibilidade e a experiência do usuário.
+
 ### Conceitos Utilizados
 
 * Mobile First
@@ -106,40 +112,48 @@ PostgreSQL
 
 ### Paleta de Cores
 
-| Elemento   | Cor     |
-| ---------- | ------- |
-| Primária   | #2563EB |
-| Secundária | #1E40AF |
-| Sucesso    | #22C55E |
-| Erro       | #EF4444 |
-| Fundo      | #F8FAFC |
-| Card       | #FFFFFF |
+| Elemento | Cor | Hexadecimal |
+|-----------|-----------|-----------|
+| Primária | Ciano Escuro | `#0891B2` |
+| Secundária | Ciano Claro | `#22D3EE` |
+| Destaque (Hover) | Ciano Profundo | `#066278` |
+| Texto Principal | Slate Escuro | `#0F172A` |
+| Texto Secundário | Slate Médio | `#64748B` |
+| Fundo | Off-white | `#F8FAFC` |
+| Card | Branco | `#FFFFFF` |
+| Bordas | Cinza Suave | `#E2E8F0` |
+| Sucesso | Verde | `#22C55E` |
+| Erro | Vermelho | `#EF4444` |
 
 ## Estrutura do Projeto
 
 ```text
-src
-├── app
-│   ├── core
-│   ├── shared
-│   ├── pages
-│   ├── services
-│   ├── guards
-│   ├── interceptors
-│   └── models
-│
-├── assets
-│
-├── environments
-│
-└── styles
+src/app/
+├── core/
+│   ├── guards/
+│   ├── interceptors/
+│   └── services/
+├── shared/
+│   └── components/
+└── features/
+    ├── auth/
+    ├── dashboard/
+    ├── pacientes/
+    ├── dentistas/
+    ├── especialidades/
+    ├── consultas/
+    ├── usuarios/
+    ├── relatorios/
+    ├── home/
+    ├── sobre/
+    └── contato/
 ```
 
 ## Pré-requisitos
 
 * Node.js 22+
 * npm 10+
-* Angular CLI 20+
+* Angular CLI 19+
 
 ## Instalação
 
