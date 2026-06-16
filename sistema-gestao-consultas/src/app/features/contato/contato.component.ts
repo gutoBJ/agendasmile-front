@@ -6,6 +6,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
 import { FooterComponent } from "../../shared/components/footer/footer.component";
+import { MatIcon } from "@angular/material/icon";
+import { MatCard, MatCardContent } from "@angular/material/card";
 
 @Component({
   selector: 'app-contato',
@@ -17,7 +19,10 @@ import { FooterComponent } from "../../shared/components/footer/footer.component
     MatInputModule,
     MatButtonModule,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    MatIcon,
+    MatCard,
+    MatCardContent
 ],
   templateUrl: './contato.component.html',
   styleUrl: './contato.component.scss'

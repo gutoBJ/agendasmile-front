@@ -40,12 +40,17 @@
 
   .info-item {
     display: flex;
+    align-items: center;
     gap: 16px;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
 
     .info-icone {
-      font-size: 1.5rem;
+      color: var(--cor-primaria);
+      font-size: 24px;
+      width: 24px;
+      height: 24px;
     }
+
 
     strong {
       display: block;
@@ -74,11 +79,37 @@
     height: 44px;
   }
 
-  .sucesso {
-    background-color: #e8f5e9;
-    color: #2e7d32;
+  .sucesso-card {
+    background-color: var(--cor-fundo-sucesso, #e8f5e9) !important; // Tom verde leve
+    border: 1px solid var(--cor-borda-sucesso, #c8e6c9);
+    border-radius: 8px;
     padding: 16px;
-    border-radius: var(--raio-borda);
-    font-weight: 500;
+
+    mat-card-content {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .sucesso-icone {
+      color: #2e7d32; // Verde Material Design (Success)
+      font-size: 32px;
+      width: 32px;
+      height: 32px;
+    }
+
+    .sucesso-texto {
+      h3 {
+        margin: 0;
+        color: #1b5e20;
+        font-size: 1.1rem;
+        font-weight: 600;
+      }
+
+      p {
+        margin: 4px 0 0 0;
+      }
+    }
   }
+
 }

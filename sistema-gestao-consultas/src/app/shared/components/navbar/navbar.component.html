@@ -1,19 +1,35 @@
 <header class="navbar">
   <div class="navbar-conteudo">
 
-    <a routerLink="/home" class="navbar-logo">
+    <a routerLink="/home" class="navbar-logo" (click)="fecharMenu()">
       <img src="logo-oficial.png" alt="Logo" height="100" />
     </a>
 
+    <!-- Menu desktop -->
     <nav class="navbar-links">
       <a routerLink="/home" routerLinkActive="ativo">Home</a>
       <a routerLink="/sobre" routerLinkActive="ativo">Sobre</a>
       <a routerLink="/contato" routerLinkActive="ativo">Contato</a>
     </nav>
 
-    <button mat-flat-button routerLink="/login" class="botao-entrar">
+    <button mat-flat-button routerLink="/login" class="botao-entrar desktop-only">
       Entrar no Sistema
     </button>
 
+    <!-- Botão hamburguer (só no mobile) -->
+    <button mat-icon-button class="menu-hamburguer" (click)="toggleMenu()">
+      <mat-icon>{{ menuAberto ? 'close' : 'menu' }}</mat-icon>
+    </button>
+
+  </div>
+
+  <!-- Menu mobile -->
+  <div class="menu-mobile" *ngIf="menuAberto">
+    <a routerLink="/home" routerLinkActive="ativo" (click)="fecharMenu()">Home</a>
+    <a routerLink="/sobre" routerLinkActive="ativo" (click)="fecharMenu()">Sobre</a>
+    <a routerLink="/contato" routerLinkActive="ativo" (click)="fecharMenu()">Contato</a>
+    <button mat-flat-button routerLink="/login" class="botao-entrar" (click)="fecharMenu()">
+      Entrar no Sistema
+    </button>
   </div>
 </header>

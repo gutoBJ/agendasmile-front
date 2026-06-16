@@ -43,4 +43,63 @@
     background-color: var(--cor-primaria) !important;
     color: #ffffff !important;
   }
+
+  // Hamburguer só aparece no mobile
+  .menu-hamburguer {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+
+    mat-icon {
+      font-size: 35px;
+      width: 35px;
+      height: 35px;
+    }
+  }
+
+  // Menu mobile
+  .menu-mobile {
+    display: flex;
+    flex-direction: column;
+    padding: 16px 24px;
+    gap: 16px;
+    border-top: 1px solid var(--cor-borda);
+
+    a {
+      text-decoration: none;
+      color: var(--cor-texto-leve);
+      font-weight: 500;
+      font-size: 1rem;
+      padding: 8px 0;
+
+      &.ativo {
+        color: var(--cor-primaria);
+      }
+    }
+
+    .botao-entrar {
+      width: 100%;
+    }
+  }
+}
+
+// Breakpoint mobile
+@media (max-width: 768px) {
+  .navbar {
+    .navbar-links {
+      display: none;
+    }
+
+    .desktop-only {
+      display: none;
+    }
+
+    .menu-hamburguer {
+      display: flex;
+    }
+  }
 }

@@ -14,7 +14,7 @@
         <h2>Informações</h2>
 
         <div class="info-item">
-          <span class="info-icone">📧</span>
+          <mat-icon class="info-icone">email</mat-icon>
           <div>
             <strong>E-mail</strong>
             <p class="texto-leve">contato&#64;agendasmile.com</p>
@@ -22,7 +22,7 @@
         </div>
 
         <div class="info-item">
-          <span class="info-icone">📞</span>
+          <mat-icon class="info-icone">call</mat-icon>
           <div>
             <strong>Telefone</strong>
             <p class="texto-leve">(11) 99999-9999</p>
@@ -30,7 +30,7 @@
         </div>
 
         <div class="info-item">
-          <span class="info-icone">📍</span>
+          <mat-icon class="info-icone">location_on</mat-icon>
           <div>
             <strong>Endereço</strong>
             <p class="texto-leve">São Paulo, SP</p>
@@ -39,9 +39,15 @@
       </div>
 
       <div class="formulario">
-        <div *ngIf="enviado" class="sucesso">
-          ✅ Mensagem enviada com sucesso! Entraremos em contato em breve.
-        </div>
+        <mat-card *ngIf="enviado" class="sucesso-card">
+          <mat-card-content>
+            <mat-icon class="sucesso-icone">check_circle</mat-icon>
+            <div class="sucesso-texto">
+              <h3>Mensagem enviada com sucesso!</h3>
+              <p class="texto-leve">Entraremos em contato em breve.</p>
+            </div>
+          </mat-card-content>
+        </mat-card>
 
         <form [formGroup]="form" *ngIf="!enviado">
 
@@ -72,11 +78,7 @@
             </mat-error>
           </mat-form-field>
 
-          <button
-            mat-flat-button
-            class="botao-enviar"
-            (click)="enviar()"
-            [disabled]="form.invalid">
+          <button mat-flat-button class="botao-enviar" (click)="enviar()" [disabled]="form.invalid">
             Enviar Mensagem
           </button>
 
