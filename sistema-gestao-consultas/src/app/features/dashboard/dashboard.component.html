@@ -1,5 +1,5 @@
 <div class="dashboard">
-  <h2>Dashboard</h2>
+  <h2 class="texto-destaque-alone">Dashboard</h2>
 
   <div class="cards">
     <mat-card class="card">
@@ -8,7 +8,7 @@
           <span class="card-titulo texto-leve">Total de Consultas</span>
           <span class="card-valor">{{ totalConsultas }}</span>
         </div>
-        <mat-icon class="card-icone">event</mat-icon>
+        <mat-icon class="card-icone icone-consultas">event</mat-icon>
       </mat-card-content>
     </mat-card>
 
@@ -18,7 +18,7 @@
           <span class="card-titulo texto-leve">Consultas Agendadas</span>
           <span class="card-valor">{{ consultasAgendadas }}</span>
         </div>
-        <mat-icon class="card-icone">event_available</mat-icon>
+        <mat-icon class="card-icone icone-agendadas">event_available</mat-icon>
       </mat-card-content>
     </mat-card>
 
@@ -28,7 +28,7 @@
           <span class="card-titulo texto-leve">Consultas Canceladas</span>
           <span class="card-valor">{{ consultasCanceladas }}</span>
         </div>
-        <mat-icon class="card-icone">event_busy</mat-icon>
+        <mat-icon class="card-icone icone-canceladas">event_busy</mat-icon>
       </mat-card-content>
     </mat-card>
 
@@ -38,7 +38,7 @@
           <span class="card-titulo texto-leve">Total de Pacientes</span>
           <span class="card-valor">{{ totalPacientes }}</span>
         </div>
-        <mat-icon class="card-icone">people</mat-icon>
+        <mat-icon class="card-icone icone-pacientes">people</mat-icon>
       </mat-card-content>
     </mat-card>
 
@@ -48,7 +48,7 @@
           <span class="card-titulo texto-leve">Total de Dentistas</span>
           <span class="card-valor">{{ totalDentistas }}</span>
         </div>
-        <mat-icon class="card-icone">medical_services</mat-icon>
+        <mat-icon class="card-icone icone-dentistas">medical_services</mat-icon>
       </mat-card-content>
     </mat-card>
   </div>

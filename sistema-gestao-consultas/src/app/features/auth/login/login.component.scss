@@ -29,7 +29,6 @@
     margin: 0 0 4px;
     font-size: 1.5rem;
     font-weight: 600;
-    color: var(--cor-texto);
   }
 
   p {
@@ -54,4 +53,31 @@
   font-size: 1rem;
   background-color: var(--cor-primaria) !important;
   color: #ffffff !important;
+}
+
+.voltar-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: var(--cor-texto-leve);
+  font-size: 0.875rem;
+  margin-top: 16px;
+  transition: color 0.2s;
+
+  .voltar-icone {
+    opacity: 0;
+    transition: opacity 0.2s;
+    font-size: 1.125rem;
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+
+  &:hover {
+    color: var(--cor-primaria);
+
+    .voltar-icone {
+      opacity: 1;
+    }
+  }
 }

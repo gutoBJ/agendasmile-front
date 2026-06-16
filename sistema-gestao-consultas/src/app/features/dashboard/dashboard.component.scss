@@ -1,9 +1,8 @@
 .dashboard {
   h2 {
     margin: 0 0 24px;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     font-weight: 600;
-    color: var(--cor-texto);
   }
 }
 
@@ -41,6 +40,32 @@
     font-size: 2.5rem;
     width: 2.5rem;
     height: 2.5rem;
-    color: var(--cor-texto-leve);
+    color: var(--cor-primaria);
   }
+
+  .icone-consultas {
+    color: #1565c0;
+  }
+
+  // azul
+  .icone-agendadas {
+    color: #2e7d32;
+  }
+
+  // verde
+  .icone-canceladas {
+    color: #d4183d;
+  }
+
+  // vermelho (seu --cor-erro)
+  .icone-pacientes {
+    color: #6a1b9a;
+  }
+
+  // roxo
+  .icone-dentistas {
+    color: #e65100;
+  }
+
+  // laranja
 }

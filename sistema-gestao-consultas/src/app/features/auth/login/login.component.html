@@ -6,8 +6,7 @@
   <div class="login-card">
 
     <div class="login-header">
-      <h1>Bem-vindo</h1>
-      <h2>Login</h2>
+      <h1 class="texto-destaque-alone">Login</h1>
       <p class="texto-leve">Faça login para continuar</p>
     </div>
 
@@ -38,16 +37,16 @@
 
       <p class="erro" *ngIf="erro">{{ erro }}</p>
 
-      <button
-        mat-flat-button
-        color="primary"
-        type="submit"
-        class="botao-entrar"
-        [disabled]="carregando">
+      <button mat-flat-button color="primary" type="submit" class="botao-entrar" [disabled]="carregando">
         <mat-spinner *ngIf="carregando" diameter="20" />
         <span *ngIf="!carregando">Entrar</span>
       </button>
 
     </form>
   </div>
+
+  <a routerLink="/home" class="voltar-link">
+    <mat-icon class="voltar-icone">arrow_back</mat-icon>
+    <span>Voltar para a tela principal</span>
+  </a>
 </div>

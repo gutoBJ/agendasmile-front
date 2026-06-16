@@ -82,6 +82,14 @@ h1, h2, h3, h4, p {
   font-family: 'Inter', sans-serif;
 }
 
+.texto-destaque {
+  color: var(--cor-primaria);
+}
+
+.texto-destaque-alone {
+  color: var(--accent);
+}
+
 .mat-mdc-card {
   border-radius: var(--raio-borda) !important;
   background-color: var(--cor-card) !important;
