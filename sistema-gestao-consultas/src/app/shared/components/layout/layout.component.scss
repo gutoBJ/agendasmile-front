@@ -5,6 +5,7 @@
 .sidenav {
   width: 240px;
   border-right: 1px solid var(--cor-borda);
+  overflow-x: hidden;
 }
 
 .conteudo {

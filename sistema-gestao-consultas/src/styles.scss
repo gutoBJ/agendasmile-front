@@ -125,6 +125,10 @@ h1, h2, h3, h4, p {
   }
 }
 
+.mat-drawer-inner-container {
+  overflow-x: hidden !important;
+}
+
 @media (max-width: 768px) {
 
   // Tabelas com scroll horizontal
