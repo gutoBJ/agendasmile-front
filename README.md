@@ -160,33 +160,19 @@ src/app/
 ### Clonar o repositório
 
 ```bash
-git clone URL_DO_REPOSITORIO
+git clone https://github.com/gutoBJ/agendasmile-front.git
 ```
 
 ### Entrar na pasta do projeto
 
 ```bash
-cd frontend
+cd sistema-gestao-consultas
 ```
 
 ### Instalar dependências
 
 ```bash
 npm install
-```
-
-## Configuração
-
-Arquivo:
-
-```text
-src/environments/environment.ts
-```
-
-```typescript
-export const environment = {
-  apiUrl: 'http://localhost:8080/api'
-};
 ```
 
 ## Executando a Aplicação
