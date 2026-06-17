@@ -1,0 +1,30 @@
+.boas-vindas {
+  text-align: center;
+  padding: 8px;
+
+  .icone {
+    mat-icon {
+      font-size: 4rem;
+      width: 4rem;
+      height: 4rem;
+      color: var(--cor-primaria);
+    }
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 16px 0 0;
+  }
+
+  p {
+    margin: 0;
+    font-size: 1rem;
+  }
+
+  .botao-entrar {
+    background-color: var(--cor-primaria) !important;
+    color: #ffffff !important;
+    padding: 0 32px;
+  }
+}

@@ -8,6 +8,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../core/services/auth.service';
+import { MatDialog } from '@angular/material/dialog';
+import { BoasVindasDialogComponent } from '../../../shared/components/boas-vindas-dialog/boas-vindas-dialog.component';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +23,7 @@ import { AuthService } from '../../../core/services/auth.service';
     MatIconModule,
     MatProgressSpinnerModule,
     RouterLink
-],
+  ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -34,7 +36,8 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
   ) {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -53,7 +56,17 @@ export class LoginComponent {
     this.auth.login(email, senha).subscribe({
       next: (res) => {
         this.auth.salvarToken(res.token);
-        this.router.navigate(['/dashboard']);
+
+        const nome = this.auth.getNome() ?? '';
+        const perfil = this.auth.getPerfil() ?? '';
+
+        this.dialog.open(BoasVindasDialogComponent, {
+          data: { nome, perfil },
+          width: '400px',
+          disableClose: true
+        }).afterClosed().subscribe(() => {
+          this.router.navigate(['/dashboard']);
+        });
       },
       error: () => {
         this.erro = 'E-mail ou senha inválidos.';
