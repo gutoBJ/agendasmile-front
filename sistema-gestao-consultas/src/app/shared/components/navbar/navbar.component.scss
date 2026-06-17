@@ -44,6 +44,11 @@
     color: #ffffff !important;
   }
 
+  .botao-sair {
+    border-color: var(--cor-erro) !important;
+    color: var(--cor-erro) !important;
+  }
+
   // Hamburguer só aparece no mobile
   .menu-hamburguer {
     display: none;
@@ -87,6 +92,41 @@
   }
 }
 
+.usuario-logado {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--cor-texto);
+  font-weight: 500;
+
+  .usuario-icone {
+    color: var(--cor-primaria);
+    font-size: 1.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .usuario-nome {
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .navbar {
+    .navbar-conteudo {
+      gap: 12px; // reduz o gap em telas médias
+    }
+
+    .usuario-nome {
+      display: none; // esconde só o nome, mantém o ícone
+    }
+
+    .navbar-links {
+      gap: 12px; // reduz gap dos links
+    }
+  }
+}
+
 // Breakpoint mobile
 @media (max-width: 768px) {
   .navbar {
@@ -95,11 +135,30 @@
     }
 
     .desktop-only {
-      display: none;
+      display: none !important;
     }
 
     .menu-hamburguer {
       display: flex;
+    }
+  }
+
+  .menu-mobile {
+    .usuario-logado {
+      padding: 8px 0;
+      border-bottom: 1px solid var(--cor-borda);
+
+      .usuario-icone {
+        color: var(--cor-primaria);
+        font-size: 1.5rem;
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+    }
+
+    .botao-entrar,
+    .botao-sair {
+      width: 100%;
     }
   }
 }

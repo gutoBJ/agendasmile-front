@@ -3,6 +3,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,6 +14,8 @@ import { CommonModule } from '@angular/common';
 })
 export class NavbarComponent {
   menuAberto = false;
+
+  constructor(public auth: AuthService) {}
 
   toggleMenu() {
     this.menuAberto = !this.menuAberto;

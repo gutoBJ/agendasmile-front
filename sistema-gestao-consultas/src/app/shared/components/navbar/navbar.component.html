@@ -12,9 +12,28 @@
       <a routerLink="/contato" routerLinkActive="ativo">Contato</a>
     </nav>
 
-    <button mat-flat-button routerLink="/login" class="botao-entrar desktop-only">
-      Entrar no Sistema
-    </button>
+    <!-- Se estiver logado: nome + botão dashboard -->
+    <ng-container *ngIf="auth.isLogado(); else naoLogado">
+      <div class="usuario-logado desktop-only">
+        <mat-icon class="usuario-icone">account_circle</mat-icon>
+        <span class="usuario-nome">{{ auth.getNome() }}</span>
+      </div>
+      <button mat-flat-button routerLink="/dashboard" class="botao-entrar desktop-only">
+        <mat-icon>dashboard</mat-icon>
+        Ir para o Dashboard
+      </button>
+      <button mat-stroked-button class="botao-sair desktop-only" (click)="auth.logout()">
+        <mat-icon>logout</mat-icon>
+        Sair
+      </button>
+    </ng-container>
+
+    <!-- Se não estiver logado: botão entrar -->
+    <ng-template #naoLogado>
+      <button mat-flat-button routerLink="/login" class="botao-entrar desktop-only">
+        Entrar no Sistema
+      </button>
+    </ng-template>
 
     <!-- Botão hamburguer (só no mobile) -->
     <button mat-icon-button class="menu-hamburguer" (click)="toggleMenu()">
@@ -28,8 +47,20 @@
     <a routerLink="/home" routerLinkActive="ativo" (click)="fecharMenu()">Home</a>
     <a routerLink="/sobre" routerLinkActive="ativo" (click)="fecharMenu()">Sobre</a>
     <a routerLink="/contato" routerLinkActive="ativo" (click)="fecharMenu()">Contato</a>
-    <button mat-flat-button routerLink="/login" class="botao-entrar" (click)="fecharMenu()">
-      Entrar no Sistema
+
+    <div class="usuario-logado" *ngIf="auth.isLogado()">
+      <mat-icon>account_circle</mat-icon>
+      <span>{{ auth.getNome() }}</span>
+    </div>
+
+    <button mat-flat-button class="botao-entrar" (click)="fecharMenu()"
+      [routerLink]="auth.isLogado() ? '/dashboard' : '/login'">
+      {{ auth.isLogado() ? 'Ir para o Dashboard' : 'Entrar no Sistema' }}
+    </button>
+
+    <button mat-stroked-button class="botao-sair" *ngIf="auth.isLogado()" (click)="auth.logout(); fecharMenu()">
+      <mat-icon>logout</mat-icon>
+      Sair
     </button>
   </div>
 </header>
