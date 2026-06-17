@@ -82,3 +82,37 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  .banner {
+    flex-direction: column;
+    padding: 40px 16px;
+    gap: 32px;
+    text-align: center;
+
+    .banner-conteudo {
+      h1 {
+        font-size: 1.5rem;
+      }
+    }
+
+    .banner-botoes {
+      justify-content: center;
+    }
+
+    .banner-imagem {
+      img {
+        max-height: 180px;
+      }
+    }
+  }
+
+  .recursos {
+    padding: 40px 16px;
+
+    .recursos-conteudo {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+  }
+}

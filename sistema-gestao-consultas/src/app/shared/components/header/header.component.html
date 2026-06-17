@@ -1,4 +1,13 @@
 <mat-toolbar class="header">
+
+  <button
+    *ngIf="mobile"
+    mat-icon-button
+    (click)="drawer.toggle()">
+
+    <mat-icon>menu</mat-icon>
+  </button>
+
   <span class="nome-usuario">
     <mat-icon class="perfil-icon">account_circle</mat-icon>
     {{ auth.getNome() }}
@@ -10,4 +19,5 @@
     <mat-icon>logout</mat-icon>
     Sair
   </button>
+
 </mat-toolbar>

@@ -113,3 +113,14 @@
   }
 
 }
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .conteudo {
+    padding: 32px 16px;
+  }
+}

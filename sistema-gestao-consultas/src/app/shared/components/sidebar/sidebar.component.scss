@@ -7,11 +7,7 @@
   flex-direction: column;
 
   .logo {
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: var(--cor-primaria);
     border-bottom: 1px solid var(--cor-borda);
-    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,7 +35,7 @@
       text-decoration: none;
       color: var(--cor-texto-leve);
       font-weight: 500;
-      transition: background 0.2s, color 0.2s;
+      transition: background .2s, color .2s;
 
       &:hover {
         background-color: var(--cor-muted);
@@ -48,12 +44,41 @@
 
       &.ativo {
         background-color: var(--cor-primaria);
-        color: #ffffff;
+        color: #fff;
 
         mat-icon {
-          color: #ffffff;
+          color: #fff;
         }
       }
     }
+  }
+}
+
+@media (max-width: 768px) {
+
+  .sidebar {
+    width: 100%;
+    min-height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--cor-borda);
+  }
+
+  .sidebar nav {
+    justify-content: space-around;
+    padding: 8px;
+    overflow-x: auto;
+  }
+
+  .sidebar nav a {
+    flex-direction: column;
+    gap: 4px;
+    min-width: 70px;
+    padding: 8px;
+    font-size: .75rem;
+  }
+
+  .sidebar nav a span {
+    display: block;
+    font-size: .7rem;
   }
 }

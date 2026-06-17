@@ -1,11 +1,13 @@
-<aside class="sidebar">
+<div class="sidebar">
+
   <div class="logo">
-    <a routerLink="/home" title="Voltar para Home">
-      <img src="logo-oficial.png" alt="Logo" />
+    <a routerLink="/home">
+      <img src="logo-oficial.png" alt="Logo">
     </a>
   </div>
 
   <nav>
+
     <a routerLink="/dashboard" routerLinkActive="ativo">
       <mat-icon>dashboard</mat-icon>
       <span>Dashboard</span>
@@ -36,10 +38,11 @@
       <span>Relatórios</span>
     </a>
 
-    <!-- Só aparece para ADMIN -->
     <a *ngIf="auth.isAdmin()" routerLink="/usuarios" routerLinkActive="ativo">
       <mat-icon>manage_accounts</mat-icon>
       <span>Usuários</span>
     </a>
+
   </nav>
-</aside>
+
+</div>

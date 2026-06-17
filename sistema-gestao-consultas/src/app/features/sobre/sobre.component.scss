@@ -52,3 +52,15 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  .conteudo {
+    padding: 32px 16px;
+  }
+
+  .cabecalho {
+    h1 {
+      font-size: 1.5rem;
+    }
+  }
+}

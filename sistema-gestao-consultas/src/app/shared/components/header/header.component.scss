@@ -10,15 +10,58 @@
     gap: 8px;
     font-weight: 500;
     font-size: 1.2rem;
+    min-width: 0;
   }
 
   .perfil-icon {
     font-size: 2rem;
     width: 2rem;
     height: 2rem;
+    flex-shrink: 0;
   }
 
   .spacer {
     flex: 1;
+  }
+
+  button {
+    flex-shrink: 0;
+  }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+  .header {
+    padding: 0 12px;
+
+    .nome-usuario {
+      font-size: 1rem;
+    }
+
+    .perfil-icon {
+      font-size: 1.7rem;
+      width: 1.7rem;
+      height: 1.7rem;
+    }
+  }
+}
+
+/* Celulares */
+@media (max-width: 480px) {
+  .header {
+    padding: 0 8px;
+
+    .nome-usuario {
+      font-size: 0.9rem;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      max-width: 140px;
+    }
+
+    button {
+      min-width: auto;
+      padding: 0 8px;
+    }
   }
 }

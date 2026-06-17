@@ -1,19 +1,24 @@
-.app-container {
-  display: flex;
+.container {
   height: 100vh;
-  background-color: var(--cor-fundo);
 }
 
-.main-area {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  overflow: hidden;
+.sidenav {
+  width: 240px;
+  border-right: 1px solid var(--cor-borda);
 }
 
 .conteudo {
-  flex: 1;
-  overflow-y: auto;
+  min-height: calc(100vh - 128px);
   padding: 24px;
   background-color: var(--cor-muted);
+}
+
+@media (max-width: 768px) {
+  .conteudo {
+    padding: 16px;
+  }
+
+  .sidenav {
+    width: 260px;
+  }
 }

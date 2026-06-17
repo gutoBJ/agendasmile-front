@@ -124,3 +124,23 @@ h1, h2, h3, h4, p {
     color: #ffffff !important;
   }
 }
+
+@media (max-width: 768px) {
+
+  // Tabelas com scroll horizontal
+  mat-card-content {
+    overflow-x: auto;
+  }
+
+  // Formulários em dialog ocupam tela toda
+  .mat-mdc-dialog-container {
+    max-width: 100vw !important;
+    width: 100vw !important;
+  }
+
+  // Formulários dentro dos dialogs
+  .form {
+    min-width: unset !important;
+    width: 100% !important;
+  }
+}
